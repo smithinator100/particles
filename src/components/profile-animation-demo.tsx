@@ -23,8 +23,6 @@ export function ProfileAnimationDemo() {
       <div className="flex items-center gap-4">
         <ProfileImg 
           ref={profileRef}
-          src="/images/profile.mp4"
-          alt="Profile Demo"
           size="xl"
           state={profileState}
           showShield={profileState === 'shield-intro'}

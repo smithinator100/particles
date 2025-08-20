@@ -24,9 +24,7 @@ interface ParticleParams {
   showLinePreview: boolean
 }
 
-interface ParticleEffectsProps {
-  state?: string
-}
+
 
 const defaultParams: ParticleParams = {
   particleCount: 25,
@@ -49,7 +47,7 @@ const defaultParams: ParticleParams = {
   showLinePreview: false
 }
 
-export function ParticleEffects({ state }: ParticleEffectsProps) {
+export function ParticleEffects() {
   const containerRef = useRef<HTMLDivElement>(null)
   const particlesRef = useRef<HTMLDivElement[]>([])
   const [params, setParams] = useState<ParticleParams>(defaultParams)

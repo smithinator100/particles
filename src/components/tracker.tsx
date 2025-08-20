@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 
 // Try to import Physics2D plugin - fallback to regular animation if not available
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let Physics2DPlugin: any = null
 try {
-  const { Physics2DPlugin: Physics2D } = require('gsap/Physics2DPlugin')
-  Physics2DPlugin = Physics2D
-  gsap.registerPlugin(Physics2DPlugin)
-} catch (e) {
+  import('gsap/Physics2DPlugin').then(({ Physics2DPlugin: Physics2D }) => {
+    Physics2DPlugin = Physics2D
+    gsap.registerPlugin(Physics2DPlugin)
+  })
+} catch {
   console.log('Physics2D plugin not available, using fallback animation')
 }
 
@@ -42,7 +44,6 @@ interface StarburstParams {
 interface TrackerProps {
   className?: string
   size?: number
-  burstColor?: string
   state?: TrackerState
   onStateChange?: (state: TrackerState) => void
   onExplode?: () => void
@@ -176,7 +177,6 @@ const defaultStarburstParams: StarburstParams = {
 export function Tracker({ 
   className = '', 
   size = 80,
-  burstColor = '#1877F2',
   state = 'hidden',
   onStateChange,
   onExplode,
@@ -187,7 +187,7 @@ export function Tracker({
   const logoContainerRef = useRef<HTMLDivElement>(null)
   const svgContainerRef = useRef<HTMLDivElement>(null)
   const logoRef = useRef<HTMLImageElement>(null)
-  const burstRef = useRef<HTMLDivElement>(null)
+  // const burstRef = useRef<HTMLDivElement>(null) // Unused for now
   const dotsRef = useRef<HTMLDivElement[]>([])
   const circleStrokeRef = useRef<SVGCircleElement>(null)
   const lineRef = useRef<SVGLineElement>(null)
@@ -478,7 +478,7 @@ export function Tracker({
     })
 
     // Create starburst effect
-    dots.forEach((dot, index) => {
+    dots.forEach((dot) => {
       const angle = Math.random() * Math.PI * 2 // Random angle instead of evenly spaced
       const distance = starburstParams.travelDistance
       const randomDistance = distance + (Math.random() - 0.5) * starburstParams.distanceVariance * 2

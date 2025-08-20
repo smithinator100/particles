@@ -770,8 +770,6 @@ export function Webcard({
           <div className="flex items-center gap-10 p-10 w-full">
             <div ref={profileRef}>
               <ProfileImg
-                src="/images/profile-pic.png"
-                alt="Profile"
                 size="xl"
                 state={profileState === 'shield-intro' ? 'shield-intro' : 'intro'}
                 className="flex-shrink-0"

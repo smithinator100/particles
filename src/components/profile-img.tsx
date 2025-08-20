@@ -2,11 +2,8 @@ import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react'
 import { gsap } from 'gsap'
 
 interface ProfileImgProps {
-  src: string
-  alt?: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
   className?: string
-  showBorder?: boolean
   state?: 'hidden' | 'intro' | 'shield' | 'shield-intro'
   showShield?: boolean
   onAnimateToHidden?: () => void
@@ -19,11 +16,8 @@ export interface ProfileImgRef {
 
 
 export const ProfileImg = forwardRef<ProfileImgRef, ProfileImgProps>(function ProfileImg({
-  src,
-  alt = 'Profile',
   size = 'md',
   className = '',
-  showBorder = false,
   state = 'intro',
   showShield = false,
   onAnimateToHidden

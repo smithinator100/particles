@@ -11,7 +11,7 @@ interface Component {
   id: string
   name: string
   description: string
-  component: React.ComponentType<any>
+  component: React.ComponentType<Record<string, unknown>>
   states?: string[]
 }
 
