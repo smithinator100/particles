@@ -2,6 +2,8 @@
 
 A modern Next.js project showcasing the power of GSAP (GreenSock Animation Platform) with TypeScript, Tailwind CSS, and scroll-triggered animations.
 
+🌐 **Live Demo**: https://smithinator100.github.io/particles/
+
 ## Features
 
 - 🚀 **Smooth Animations**: 60fps animations using GSAP
