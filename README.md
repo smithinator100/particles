@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GSAP Animation Project
+
+A modern Next.js project showcasing the power of GSAP (GreenSock Animation Platform) with TypeScript, Tailwind CSS, and scroll-triggered animations.
+
+## Features
+
+- 🚀 **Smooth Animations**: 60fps animations using GSAP
+- 📜 **Scroll Triggers**: Animations triggered by scroll position
+- 🌟 **Parallax Effects**: Beautiful depth and movement
+- 🎨 **Modern UI**: Built with Tailwind CSS and beautiful gradients
+- ⚡ **TypeScript**: Full type safety and better developer experience
+- 📱 **Responsive**: Mobile-first design approach
+
+## Technologies Used
+
+- [Next.js 15](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [GSAP](https://greensock.com/gsap/) - Animation library
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx          # Main demo page with GSAP animations
+│   ├── layout.tsx        # Root layout
+│   └── globals.css       # Global styles
+├── components/
+│   ├── animated-text.tsx # Reusable animated text component
+│   └── morphing-shape.tsx # SVG morphing animation component
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key GSAP Features Demonstrated
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Basic Animations
+- Fade in/out effects
+- Scale and rotation animations
+- Position transitions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Timeline Animations
+- Sequenced animations
+- Staggered effects
+- Looping animations
 
-## Learn More
+### 3. Scroll Triggers
+- Animations triggered by scroll position
+- Parallax scrolling effects
+- Progressive animations
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Interactive Animations
+- Hover effects
+- Mouse-driven animations
+- State-based transitions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### AnimatedText
+Animates text characters individually with customizable timing and effects.
 
-## Deploy on Vercel
+```tsx
+import { AnimatedText } from '@/components/animated-text'
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<AnimatedText 
+  text="Hello World" 
+  className="text-4xl font-bold"
+  triggerOnScroll={true}
+  stagger={0.1}
+/>
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### MorphingShape
+Creates SVG path morphing animations for dynamic shapes.
+
+```tsx
+import { MorphingShape } from '@/components/morphing-shape'
+
+<MorphingShape 
+  autoPlay={true}
+  duration={2}
+  className="w-24 h-24"
+/>
+```
+
+## GSAP Plugins Used
+
+- **ScrollTrigger**: For scroll-based animations
+- **MorphSVG**: For SVG path morphing (premium plugin)
+
+## Performance Tips
+
+- Use `will-change: transform` for animated elements
+- Prefer transform and opacity for smooth animations
+- Use GSAP's `force3D: true` for hardware acceleration
+- Optimize scroll triggers with proper start/end values
+
+## Learning Resources
+
+- [GSAP Documentation](https://greensock.com/docs/)
+- [ScrollTrigger Demos](https://codepen.io/collection/AKkZQo)
+- [GSAP Learning Center](https://greensock.com/learning/)
+
+## License
+
+MIT License - feel free to use this project as a starting point for your own GSAP animations!

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- State Navigation -->
+        <div class="state-nav">
+            <button class="state-btn active" data-state="hidden">Hidden</button>
+            <button class="state-btn" data-state="intro">Intro</button>
+        </div>
+        
+        <div class="card" id="card">
+
+            <div class="bar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                <circle cx="4" cy="4" r="4" fill="#453D57"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                <circle cx="4" cy="4" r="4" fill="#453D57"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                <circle cx="4" cy="4" r="4" fill="#453D57"/>
+                </svg>
+            </div>
+
+
+            <div class="content">
+                <div class="profile-img"></div>
+                <div class="lines-container">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+
+            <div class="bottom-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Debug logging
+        console.log('Script loaded');
+        console.log('GSAP available:', typeof gsap !== 'undefined');
+        
+        // State management
+        const card = document.getElementById('card');
+        const stateBtns = document.querySelectorAll('.state-btn');
+        
+        console.log('Card element:', card);
+        console.log('State buttons:', stateBtns.length);
+        
+        // Initial state setup
+        const states = {
+            hidden: () => {
+                // Profile completely hidden
+                gsap.set('.profile-img', { 
+                    opacity: 0,
+                    scale: 0
+                });
+                
+                // Lines with 0px width and hidden
+                gsap.set('.line', {
+                    width: '0px',
+                    opacity: 0,
+                    scaleX: 0
+                });
+                
+                // Circles hidden - start from below their position
+                gsap.set('.dot', {
+                    opacity: 0,
+                    y: 60  // Start 60px below their final position
+                });
+                
+                gsap.set('.card', {
+                    opacity: 0.3,
+                    scale: 0.95
+                });
+            },
+            intro: () => {
+                gsap.to('.card', {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.5,
+                    ease: "back.out(1.7)"
+                });
+                
+                // Profile first
+                gsap.to('.profile-img', {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.6,
+                    delay: 0.2,
+                    ease: "back.out(1.7)"
+                });
+                
+                // Then lines - animate to their original sizes
+                gsap.to('.line:nth-child(1)', {
+                    width: '57px',
+                    opacity: 0.09,
+                    scaleX: 1,
+                    duration: 0.5,
+                    delay: 0.6,
+                    ease: "power2.out"
+                });
+                gsap.to('.line:nth-child(2)', {
+                    width: '86px',
+                    opacity: 0.06,
+                    scaleX: 1,
+                    duration: 0.5,
+                    delay: 0.7,
+                    ease: "power2.out"
+                });
+                gsap.to('.line:nth-child(3)', {
+                    width: '39px',
+                    opacity: 0.03,
+                    scaleX: 1,
+                    duration: 0.5,
+                    delay: 0.8,
+                    ease: "power2.out"
+                });
+                
+                // Then circles - animate scale only
+                gsap.to('.dot', {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.4,
+                    delay: 1.0,
+                    stagger: 0.05,
+                    ease: "bounce.out"
+                });
+            }
+        };
+        
+        // Handle state switching
+        stateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const state = btn.dataset.state;
+                console.log('Switching to state:', state);
+                
+                // Update active button
+                stateBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Apply state
+                states[state]();
+            });
+        });
+        
+        // Initialize with hidden state
+        console.log('Initializing with hidden state');
+        states.hidden();
+    </script>
+</body>
+</html>

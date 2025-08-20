@@ -1,0 +1,18 @@
+{
+  "dotCount": 13,
+  "dotSize": 0.26,
+  "travelDistance": 800,
+  "animationDuration": 1.2,
+  "staggerDelay": 0.028,
+  "scaleInDuration": 0.1,
+  "scaleInEase": "back.out(2)",
+  "fadeOutDelay": 0.6,
+  "fadeOutDuration": 0.8,
+  "fadeOutScale": 0.1,
+  "physicsVelocityMultiplier": 1.5,
+  "physicsAngleVariance": 81,
+  "physicsGravity": 50,
+  "physicsFriction": 0.1,
+  "fallbackEase": "power2.out",
+  "fallbackStagger": 0.02
+}

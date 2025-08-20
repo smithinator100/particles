@@ -1,0 +1,1 @@
+export { AnimatedSlideClient as AnimatedSlide } from './animated-slide-client' 
